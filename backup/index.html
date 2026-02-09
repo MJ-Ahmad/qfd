@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuranerFariwala — Home</title>
+
+  <style>
+    :root{
+      --page-bg:#faf9f7;
+      --panel-bg:#ffffff;
+      --muted:#6b7280;
+      --primary:#0ea5a4;
+      --accent:#06b6d4;
+      --fg:#042028;
+      --card-border:rgba(2,6,23,0.06);
+      --radius:12px;
+      --max:1100px;
+      --max-content:980px;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--page-bg);color:var(--fg)}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:1rem}
+
+    /* Header grid */
+    header{
+      background:var(--panel-bg);
+      border-bottom:1px solid var(--card-border);
+      box-shadow:0 6px 18px rgba(2,6,23,0.04);
+      position:sticky; top:0; z-index:120;
+    }
+    .nav{
+      display:grid;
+      grid-template-columns:220px 1fr 220px;
+      align-items:center;
+      gap:.5rem;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:.8rem 1rem;
+    }
+    .nav-left{display:flex;align-items:center;gap:.6rem;min-width:0}
+    .mobile-toggle{display:none;background:transparent;border:0;padding:.35rem;cursor:pointer}
+    .brand{font-weight:800;font-size:1.05rem;color:var(--fg);justify-self:start;display:inline-flex;gap:.3rem}
+    .brand .q{color:var(--primary)} .brand .f{color:var(--accent)}
+
+    .nav-center{display:flex;align-items:center;justify-content:center;min-width:0}
+    .nav-links{display:flex;gap:.6rem;align-items:center}
+    .nav-link{padding:.45rem .9rem;border-radius:8px;font-weight:700}
+    .nav-link:hover{background:rgba(2,6,23,0.02)}
+
+    .nav-right{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;min-width:0}
+    .header-cart{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:8px;cursor:pointer;font-weight:800}
+    .cart-count{background:var(--primary);color:#fff;padding:.12rem .45rem;border-radius:999px;font-weight:800;font-size:.82rem}
+
+    /* Hero */
+    .hero{padding:2.4rem 1rem;text-align:center;max-width:var(--max-content);margin:0 auto}
+    .kicker{display:inline-block;padding:.28rem .7rem;border-radius:999px;background:rgba(14,165,164,0.06);color:var(--primary);font-weight:800;margin-bottom:.6rem}
+    h1{margin:.35rem 0;font-size:2rem}
+    .lead{color:var(--muted);max-width:760px;margin:0.6rem auto 1rem auto}
+    .full-btn{display:inline-flex;padding:.75rem 1.1rem;border-radius:10px;border:0;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-weight:800}
+
+    /* Features / sections */
+    .features{max-width:var(--max-content);margin:1.2rem auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:0 1rem}
+    .feature{background:var(--panel-bg);border:1px solid var(--card-border);border-radius:12px;padding:1rem;box-shadow:0 8px 30px rgba(2,6,23,0.04)}
+    .feature h3{margin:0 0 .5rem 0}
+    .feature p{margin:0;color:var(--muted)}
+
+    /* Footer */
+    footer{background:var(--panel-bg);border-top:1px solid var(--card-border);box-shadow:0 -6px 18px rgba(2,6,23,0.03);margin-top:2.4rem;padding:1.2rem 1rem}
+    .footer-inner{max-width:var(--max);margin:0 auto;text-align:center;color:var(--muted)}
+    .footer-links{display:flex;gap:1.2rem;justify-content:center;margin-top:.6rem}
+    .footer-links a{color:var(--muted);text-decoration:none}
+    .footer-links a:hover{text-decoration:underline}
+
+    /* Mobile menu */
+    #mobile-menu{display:none;position:relative;max-width:var(--max);margin:0;padding:.6rem;border-radius:10px;background:var(--panel-bg);border:1px solid var(--card-border);box-shadow:0 12px 40px rgba(2,6,23,0.06)}
+    #mobile-menu .mobile-links{display:flex;flex-direction:column;gap:.4rem;padding:.4rem}
+    #mobile-menu .mobile-links a{display:block;padding:.6rem;border-radius:8px;font-weight:700;color:var(--fg)}
+
+    /* Responsive */
+    @media (max-width:1024px){ .features{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:768px){
+      .mobile-toggle{display:inline-flex}
+      .nav{grid-template-columns:48px 1fr 48px;padding:.6rem}
+      .brand{display:none}
+      .nav-links{display:none}
+      #mobile-menu{display:none}
+      .features{grid-template-columns:1fr;padding:0 0.8rem}
+      .full-btn{width:100%}
+    }
+
+    .small{font-size:0.92rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-left">
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+
+        <a class="brand" href="./index.html" aria-label="QuranerFariwala home">
+          <span class="q">Quraner</span><span class="f">Fariwala</span>
+        </a>
+      </div>
+
+      <div class="nav-center">
+        <nav id="primary-nav" class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./donate.html">Donate</a>
+          <a class="nav-link" href="./tracing.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <a class="header-cart" href="./cart.html" aria-label="Open cart">
+          <svg class="cart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="8" cy="21" r="1"></circle>
+            <circle cx="19" cy="21" r="1"></circle>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path>
+          </svg>
+          <div style="font-weight:800">Cart</div>
+          <div id="header-cart-count" class="cart-count" aria-hidden="true">0</div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" aria-hidden="true">
+    <div class="mobile-links">
+      <a href="./index.html">Home</a>
+      <a href="./donate.html">Donate</a>
+      <a href="./tracing.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="container" role="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div>
+        <div class="kicker">Ramadhan-2026 Campaign</div>
+        <h1 id="hero-heading">Transform Lives Through <span style="background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;color:transparent">Giving</span></h1>
+        <p class="lead">Join our mission to print and distribute 40,000 memorization-optimized Qurans. Your support empowers students and preserves the tradition of memorization.</p>
+        <div style="margin-top:1rem"><a class="full-btn" href="./donate.html">Donate Now</a></div>
+      </div>
+    </section>
+
+    <section class="features" aria-labelledby="features-heading">
+      <div class="feature">
+        <h3>Our Mission</h3>
+        <p class="small">Print and distribute memorization-optimized Qurans to underserved students and Hifz centres across Bangladesh and South Asia.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Impact</h3>
+        <p class="small">Every donation supports printing, teacher resources, and community outreach to make memorization accessible.</p>
+      </div>
+
+      <div class="feature">
+        <h3>Get Involved</h3>
+        <p class="small">Sponsor copies, fund campaigns, or volunteer with local distribution partners to amplify reach.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>© 2026 Quraner Fariwala — All rights reserved</div>
+      <div class="footer-links" role="navigation" aria-label="Footer links">
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./support.html">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

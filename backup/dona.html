@@ -50,11 +50,13 @@ header {
   padding:0.9rem 1rem;
 }
 .brand { display:flex; align-items:center; gap:0.75rem; color:var(--fg); text-decoration:none; }
-.logo {
-  width:44px; height:44px; border-radius:10px;
-  display:flex; align-items:center; justify-content:center;
+.site-logo {
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  display:inline-block;
+  object-fit:cover;
   background: linear-gradient(135deg,var(--primary),var(--accent));
-  font-weight:800; color:#042;
   box-shadow: 0 6px 18px rgba(2,6,23,0.6);
 }
 .nav-links { display:flex; gap:0.5rem; align-items:center; }
@@ -180,10 +182,9 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
   .cart-modal { bottom:3.8rem; max-height:50vh; }
 }
 </style>
-
-
 </head>
 <body class="font-sans antialiased">
+
 <header>
   <div class="nav-inner">
     <a class="brand" href="/" aria-label="Quraner Fariwala home">
@@ -232,36 +233,24 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
 <!-- Hero -->
 <section class="hero" role="banner" aria-label="Ramadhan campaign hero">
   <div class="overlay" aria-hidden="true"></div>
-
   <div class="content" role="region" aria-labelledby="hero-heading">
     <div class="kicker" aria-hidden="true">Ramadhan-2026 Campaign</div>
-
-    <h1 id="hero-heading">
-      Transform Lives Through
-      <span style="background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">
-        Giving
-      </span>
-    </h1>
-
-    <p class="lead">
-      Join our mission to print and distribute <strong>40,000</strong> memorization‑optimized Qurans.
-      Your donation empowers orphans and underserved Hifz students across Bangladesh and South Asia.
-    </p>
+    <h1 id="hero-heading">Transform Lives Through <span style="background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Giving</span></h1>
+    <p class="lead">Join our mission to print and distribute 40,000 memorization-optimized Qurans. Your donation empowers orphans and underserved Hifz students across Bangladesh and South Asia.</p>
   </div>
 </section>
 
-
+<!-- Main content (example grid) -->
 <main class="container" id="donate" role="main">
   <section>
     <h2 style="text-align:center;margin-bottom:1rem">Ways to Support Us</h2>
 
-    <div class="donate-grid" aria-live="polite">
-      <!-- 1 -->
+    <div class="grid cols-3" aria-live="polite">
       <div class="card">
         <h3>Single Copy Sponsor</h3>
         <p class="muted">Sponsor one memorization-optimized Quran for a deserving student</p>
-        <div class="card-row">
-          <div class="price">$3.25</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-top:0.6rem">
+          <div class="price" aria-hidden="true">$3.25</div>
           <button class="full-btn add-to-cart" data-title="Single Copy Sponsor" data-price="3.25" aria-label="Add Single Copy Sponsor to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path></svg>
             Add to Cart
@@ -269,12 +258,11 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
         </div>
       </div>
 
-      <!-- 2 -->
       <div class="card">
         <h3>Batch Sponsor (1,000 Copies)</h3>
         <p class="muted">Sponsor 1,000 Qurans for institutional distribution</p>
-        <div class="card-row">
-          <div class="price">$2200</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-top:0.6rem">
+          <div class="price" aria-hidden="true">$2200</div>
           <button class="full-btn add-to-cart" data-title="Batch Sponsor (1,000 Copies)" data-price="2200" aria-label="Add Batch Sponsor to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path></svg>
             Add to Cart
@@ -282,12 +270,11 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
         </div>
       </div>
 
-      <!-- 3 -->
       <div class="card">
         <h3>Debt Recovery Partner</h3>
         <p class="muted">Support institutional healing and legacy debt settlement</p>
-        <div class="card-row">
-          <div class="price">$22500</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-top:0.6rem">
+          <div class="price" aria-hidden="true">$22500</div>
           <button class="full-btn add-to-cart" data-title="Debt Recovery Partner" data-price="22500" aria-label="Add Debt Recovery Partner to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path></svg>
             Add to Cart
@@ -295,12 +282,11 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
         </div>
       </div>
 
-      <!-- 4 -->
       <div class="card">
         <h3>Infrastructure Patron</h3>
         <p class="muted">Sponsor team rebuilding, technology, and logistics</p>
-        <div class="card-row">
-          <div class="price">$16000</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-top:0.6rem">
+          <div class="price" aria-hidden="true">$16000</div>
           <button class="full-btn add-to-cart" data-title="Infrastructure Patron" data-price="16000" aria-label="Add Infrastructure Patron to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path></svg>
             Add to Cart
@@ -308,12 +294,11 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
         </div>
       </div>
 
-      <!-- 5 -->
       <div class="card">
         <h3>Global Campaign Ally</h3>
         <p class="muted">Fund outreach, media production, and donor engagement</p>
-        <div class="card-row">
-          <div class="price">$11000</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.6rem;margin-top:0.6rem">
+          <div class="price" aria-hidden="true">$11000</div>
           <button class="full-btn add-to-cart" data-title="Global Campaign Ally" data-price="11000" aria-label="Add Global Campaign Ally to cart">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"></path></svg>
             Add to Cart
@@ -321,7 +306,6 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
         </div>
       </div>
 
-      <!-- 6 -->
       <div class="card">
         <h3>Custom Donation</h3>
         <p class="muted">Choose your own amount to support Quraner Fariwala</p>
@@ -359,254 +343,165 @@ input[type="number"] { width:100%; padding:0.6rem; border-radius:8px; border:1px
   </div>
 </div>
 
-
 <!-- Toast container -->
 <div id="qf-toast" aria-hidden="true"></div>
 
+<!-- Inline script: mobile menu + cart logic (unchanged) -->
+<script>
+  (function () {
+    'use strict';
 
-<footer class="site-footer" role="contentinfo" style="border-top:1px solid var(--border);padding:1rem 0;margin-top:1.5rem;background:transparent;color:var(--muted);">
-  <div style="max-width:1100px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;gap:0.5rem;align-items:center;text-align:center;">
-    <div style="font-size:0.98rem;color:var(--fg);font-weight:600;">
-      © <span id="site-year"></span> QuranerFariwala — All rights reserved.
-    </div>
+    /* ---------- Helpers ---------- */
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+    const CART_KEY = 'qf_cart_v1';
 
-    <div style="font-size:0.95rem;color:var(--muted);">
-      This project is open source and available under the MIT License.
-    </div>
+    function parsePrice(v) {
+      const n = Number(String(v).replace(/[^0-9.]/g, ''));
+      return Number.isFinite(n) ? n : 0;
+    }
+    function formatCurrency(n) {
+      return '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
 
-    <div style="margin-top:0.25rem;font-size:0.92rem;color:var(--muted);max-width:820px;">
-      If you encounter any issues or have complaints regarding payments, or notice discrepancies in field activities, please contact:
-      <a href="mailto:mjahmad2024@outlook.com" style="color:var(--primary);text-decoration:none;margin-left:0.35rem">mjahmad2024@outlook.com</a>
-    </div>
+    /* ---------- Toast ---------- */
+    function showToast(msg, ms = 2000) {
+      const container = document.getElementById('qf-toast');
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.style.background = 'rgba(255,255,255,0.06)';
+      el.style.color = 'var(--fg)';
+      el.style.padding = '0.6rem 0.9rem';
+      el.style.borderRadius = '8px';
+      el.style.boxShadow = '0 8px 24px rgba(2,6,23,0.6)';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-6px)';
+      el.style.transition = 'opacity 180ms ease, transform 180ms ease';
+      container.appendChild(el);
+      requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+      setTimeout(() => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(-6px)';
+        setTimeout(() => el.remove(), 220);
+      }, ms);
+    }
 
-    <div style="margin-top:0.25rem;font-size:0.95rem;color:var(--fg);font-weight:600">
-      With a vision for tomorrow’s leaders — by MJ‑AHMAD
-    </div>
-
-    <nav aria-label="Footer links" style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;">
-      <a href="/terms.html" style="color:var(--muted);text-decoration:none;font-weight:600">Terms</a>
-      <a href="/privacy.html" style="color:var(--muted);text-decoration:none;font-weight:600">Privacy</a>
-      <a href="/docs.html" style="color:var(--muted);text-decoration:none;font-weight:600">Docs</a>
-      <a href="/faq.html" style="color:var(--muted);text-decoration:none;font-weight:600">FAQ</a>
-    </nav>
-  </div>
-
-  <script>
-    (function(){
-      try { document.getElementById('site-year').textContent = new Date().getFullYear(); } catch(e){}
-    })();
-  </script>
-</footer>
-
-
-
-
-  <!-- Inline script: mobile menu + cart logic -->
-  <script>
-    (function () {
-      'use strict';
-
-      /* ---------- Helpers ---------- */
-      const $ = (sel, root = document) => root.querySelector(sel);
-      const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-      const CART_KEY = 'qf_cart_v1';
-
-      function parsePrice(v) {
-        const n = Number(String(v).replace(/[^0-9.]/g, ''));
-        return Number.isFinite(n) ? n : 0;
+    /* ---------- Cart storage ---------- */
+    function loadCart() {
+      try {
+        const raw = localStorage.getItem(CART_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
       }
-      function formatCurrency(n) {
-        return '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
+    }
+    function saveCart(cart) {
+      try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
+    }
 
-      /* ---------- Toast ---------- */
-      function showToast(msg, ms = 2000) {
-        const container = document.getElementById('qf-toast');
-        const el = document.createElement('div');
-        el.textContent = msg;
-        el.style.background = 'rgba(255,255,255,0.06)';
-        el.style.color = 'var(--fg)';
-        el.style.padding = '0.6rem 0.9rem';
-        el.style.borderRadius = '8px';
-        el.style.boxShadow = '0 8px 24px rgba(2,6,23,0.6)';
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(-6px)';
-        el.style.transition = 'opacity 180ms ease, transform 180ms ease';
-        container.appendChild(el);
-        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
-        setTimeout(() => {
-          el.style.opacity = '0'; el.style.transform = 'translateY(-6px)';
-          setTimeout(() => el.remove(), 220);
-        }, ms);
-      }
+    /* ---------- Cart UI ---------- */
+    const cartFab = document.getElementById('cart-fab');
+    const cartCountEl = document.getElementById('cart-count');
+    const cartModal = document.getElementById('cart-modal');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
+    const cartClearBtn = document.getElementById('cart-clear');
+    const checkoutBtn = document.getElementById('checkout');
 
-      /* ---------- Cart storage ---------- */
-      function loadCart() {
-        try {
-          const raw = localStorage.getItem(CART_KEY);
-          return raw ? JSON.parse(raw) : [];
-        } catch (e) {
-          return [];
-        }
-      }
-      function saveCart(cart) {
-        try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
-      }
-
-      /* ---------- Cart UI ---------- */
-      const cartFab = document.getElementById('cart-fab');
-      const cartCountEl = document.getElementById('cart-count');
-      const cartModal = document.getElementById('cart-modal');
-      const cartItemsEl = document.getElementById('cart-items');
-      const cartTotalEl = document.getElementById('cart-total');
-      const cartClearBtn = document.getElementById('cart-clear');
-      const checkoutBtn = document.getElementById('checkout');
-
-      function renderCart() {
-        const cart = loadCart();
-        cartItemsEl.innerHTML = '';
-        if (!cart.length) {
-          cartItemsEl.innerHTML = '<div class="small" style="padding:0.6rem 0">Your cart is empty.</div>';
-        } else {
-          cart.forEach((it, idx) => {
-            const row = document.createElement('div');
-            row.className = 'cart-item';
-            const meta = document.createElement('div');
-            meta.className = 'meta';
-            meta.innerHTML = '<div style="font-weight:700">' + escapeHtml(it.title) + '</div><div class="small">' + (it.custom ? 'Custom donation' : '') + '</div>';
-            const right = document.createElement('div');
-            right.style.textAlign = 'right';
-            right.innerHTML = '<div style="font-weight:800">' + formatCurrency(it.price) + '</div><div style="margin-top:6px"><button data-idx="' + idx + '" class="small remove-item" style="background:transparent;border:0;color:var(--muted);cursor:pointer">Remove</button></div>';
-            row.appendChild(meta);
-            row.appendChild(right);
-            cartItemsEl.appendChild(row);
-          });
-        }
-        const total = cart.reduce((s, i) => s + Number(i.price || 0), 0);
-        cartTotalEl.textContent = formatCurrency(total);
-        cartCountEl.textContent = String(cart.length);
-      }
-
-      function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
-
-      cartFab.addEventListener('click', () => {
-        cartModal.classList.toggle('open');
-      });
-
-      cartClearBtn.addEventListener('click', () => {
-        if (!confirm('Clear all items from cart?')) return;
-        saveCart([]);
-        renderCart();
-        showToast('Cart cleared');
-      });
-
-      cartItemsEl.addEventListener('click', (e) => {
-        const btn = e.target.closest('button.remove-item');
-        if (!btn) return;
-        const idx = Number(btn.getAttribute('data-idx'));
-        const cart = loadCart();
-        if (idx >= 0 && idx < cart.length) {
-          cart.splice(idx, 1);
-          saveCart(cart);
-          renderCart();
-          showToast('Item removed');
-        }
-      });
-
-      checkoutBtn.addEventListener('click', () => {
-        const cart = loadCart();
-        if (!cart.length) { showToast('Your cart is empty'); return; }
-        // For demo: just show a toast and clear cart
-        showToast('Thank you — checkout simulated');
-        saveCart([]);
-        renderCart();
-      });
-
-      /* ---------- Add to cart bindings ---------- */
-      function bindAddButtons() {
-        const addBtns = Array.from(document.querySelectorAll('.add-to-cart'));
-        addBtns.forEach(btn => {
-          if (btn.dataset.bound === 'true') return;
-          btn.dataset.bound = 'true';
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const title = btn.getAttribute('data-title') || btn.closest('.card')?.querySelector('h3')?.textContent?.trim() || 'Support item';
-            const price = parsePrice(btn.getAttribute('data-price') || btn.closest('.card')?.querySelector('.price')?.textContent || '0');
-            const item = { title: title, price: Number(price), addedAt: new Date().toISOString() };
-            const cart = loadCart();
-            cart.push(item);
-            saveCart(cart);
-            renderCart();
-            showToast('Added to cart: ' + title);
-          });
+    function renderCart() {
+      const cart = loadCart();
+      cartItemsEl.innerHTML = '';
+      if (!cart.length) {
+        cartItemsEl.innerHTML = '<div class="small" style="padding:0.6rem 0">Your cart is empty.</div>';
+      } else {
+        cart.forEach((it, idx) => {
+          const row = document.createElement('div');
+          row.className = 'cart-item';
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+          meta.innerHTML = '<div style="font-weight:700">' + escapeHtml(it.title) + '</div><div class="small">' + (it.custom ? 'Custom donation' : '') + '</div>';
+          const right = document.createElement('div');
+          right.style.textAlign = 'right';
+          right.innerHTML = '<div style="font-weight:800">' + formatCurrency(it.price) + '</div><div style="margin-top:6px"><button data-idx="' + idx + '" class="small remove-item" style="background:transparent;border:0;color:var(--muted);cursor:pointer">Remove</button></div>';
+          row.appendChild(meta);
+          row.appendChild(right);
+          cartItemsEl.appendChild(row);
         });
       }
+      const total = cart.reduce((s, i) => s + Number(i.price || 0), 0);
+      cartTotalEl.textContent = formatCurrency(total);
+      cartCountEl.textContent = String(cart.length);
+    }
 
-      /* ---------- Custom donation ---------- */
-      const customInput = document.getElementById('custom-amount');
-      const customAdd = document.getElementById('custom-add');
-      if (customInput && customAdd) {
-        customInput.addEventListener('input', () => {
-          const v = Number(customInput.value);
-          if (Number.isFinite(v) && v >= 1) {
-            customAdd.disabled = false;
-            customAdd.removeAttribute('aria-disabled');
-          } else {
-            customAdd.disabled = true;
-            customAdd.setAttribute('aria-disabled', 'true');
-          }
-        });
-        customAdd.addEventListener('click', (e) => {
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+
+    cartFab.addEventListener('click', () => {
+      cartModal.classList.toggle('open');
+    });
+
+    cartClearBtn.addEventListener('click', () => {
+      if (!confirm('Clear all items from cart?')) return;
+      saveCart([]);
+      renderCart();
+      showToast('Cart cleared');
+    });
+
+    cartItemsEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('button.remove-item');
+      if (!btn) return;
+      const idx = Number(btn.getAttribute('data-idx'));
+      const cart = loadCart();
+      if (idx >= 0 && idx < cart.length) {
+        cart.splice(idx, 1);
+        saveCart(cart);
+        renderCart();
+        showToast('Item removed');
+      }
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+      const cart = loadCart();
+      if (!cart.length) { showToast('Your cart is empty'); return; }
+      // For demo: just show a toast and clear cart
+      showToast('Thank you — checkout simulated');
+      saveCart([]);
+      renderCart();
+    });
+
+    /* ---------- Add to cart bindings ---------- */
+    function bindAddButtons() {
+      const addBtns = Array.from(document.querySelectorAll('.add-to-cart'));
+      addBtns.forEach(btn => {
+        if (btn.dataset.bound === 'true') return;
+        btn.dataset.bound = 'true';
+        btn.addEventListener('click', (e) => {
           e.preventDefault();
-          const v = Number(customInput.value);
-          if (!Number.isFinite(v) || v < 1) { showToast('Enter a valid amount (minimum $1)'); return; }
-          const item = { title: 'Custom Donation', price: Number(v), custom: true, addedAt: new Date().toISOString() };
+          const title = btn.getAttribute('data-title') || btn.closest('.card')?.querySelector('h3')?.textContent?.trim() || 'Support item';
+          const price = parsePrice(btn.getAttribute('data-price') || btn.closest('.card')?.querySelector('.price')?.textContent || '0');
+          const item = { title: title, price: Number(price), addedAt: new Date().toISOString() };
           const cart = loadCart();
           cart.push(item);
           saveCart(cart);
           renderCart();
-          showToast('Custom donation added');
-          customInput.value = '';
+          showToast('Added to cart: ' + title);
+        });
+      });
+    }
+
+    /* ---------- Custom donation ---------- */
+    const customInput = document.getElementById('custom-amount');
+    const customAdd = document.getElementById('custom-add');
+    if (customInput && customAdd) {
+      customInput.addEventListener('input', () => {
+        const v = Number(customInput.value);
+        if (Number.isFinite(v) && v >= 1) {
+          customAdd.disabled = false;
+          customAdd.removeAttribute('aria-disabled');
+        } else {
           customAdd.disabled = true;
-        });
-      }
-
-      /* ---------- Mobile menu toggle ---------- */
-      const mobileToggle = document.getElementById('mobile-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileToggle && mobileMenu) {
-        mobileToggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          const open = mobileToggle.getAttribute('aria-expanded') === 'true';
-          if (open) {
-            mobileMenu.style.display = 'none';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-          } else {
-            mobileMenu.style.display = 'block';
-            mobileToggle.setAttribute('aria-expanded', 'true');
-          }
-        });
-        // Close on outside click
-        document.addEventListener('click', (ev) => {
-          if (!mobileMenu.contains(ev.target) && !mobileToggle.contains(ev.target)) {
-            mobileMenu.style.display = 'none';
-            mobileToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      /* ---------- Init ---------- */
-      function init() {
-        renderCart();
-        bindAddButtons();
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
-    })();
-  </script>
-</body>
-</html>
+          customAdd.setAttribute('aria-disabled', 'true');
+        }
+      });
+      customAdd.addEventListener('click', (e) => {
+        e.preventDefault();
+        const v = Number(customInput.value);
+        if (!Number.isFinite

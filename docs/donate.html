@@ -64,12 +64,15 @@
     <section aria-labelledby="donate-heading">
       <h2 id="donate-heading" style="text-align:center; margin-bottom:1rem;">Ways to Support Us</h2>
 
-      <div class="grid cols-3" style="grid-template-columns:repeat(3,1fr);">
+      <!-- Responsive support grid: 3 columns desktop, 2 columns tablet, 1 column mobile -->
+      <div class="support-grid" aria-live="polite">
         <!-- Single Copy Sponsor -->
         <article class="card" role="article" aria-label="Single Copy Sponsor">
-          <h3>Single Copy Sponsor</h3>
-          <p class="muted">Sponsor one memorization-optimized Quran for a deserving student</p>
-          <div class="impact"><strong>Impact:</strong> Provides 1 beautifully printed Quran to an orphan or underserved learner</div>
+          <div>
+            <h3>Single Copy Sponsor</h3>
+            <p class="muted">Sponsor one memorization-optimized Quran for a deserving student</p>
+            <div class="impact"><strong>Impact:</strong> Provides 1 beautifully printed Quran to an orphan or underserved learner</div>
+          </div>
           <div>
             <div class="price">$3.25</div>
             <button class="full-btn add-to-cart" data-title="Single Copy Sponsor" data-price="3.25" aria-label="Add Single Copy Sponsor to cart">Add to Cart</button>
@@ -78,9 +81,11 @@
 
         <!-- Batch Sponsor -->
         <article class="card" role="article" aria-label="Batch Sponsor">
-          <h3>Batch Sponsor (1,000 Copies)</h3>
-          <p class="muted">Sponsor 1,000 Qurans for institutional distribution</p>
-          <div class="impact"><strong>Impact:</strong> Distributes 1,000 memorization-optimized Qurans across schools and Hifz centres</div>
+          <div>
+            <h3>Batch Sponsor (1,000 Copies)</h3>
+            <p class="muted">Sponsor 1,000 Qurans for institutional distribution</p>
+            <div class="impact"><strong>Impact:</strong> Distributes 1,000 memorization-optimized Qurans across schools and Hifz centres</div>
+          </div>
           <div>
             <div class="price">$2,200</div>
             <button class="full-btn add-to-cart" data-title="Batch Sponsor (1,000 Copies)" data-price="2200" aria-label="Add Batch Sponsor to cart">Add to Cart</button>
@@ -89,9 +94,11 @@
 
         <!-- Debt Recovery Partner -->
         <article class="card" role="article" aria-label="Debt Recovery Partner">
-          <h3>Debt Recovery Partner</h3>
-          <p class="muted">Support institutional healing and legacy debt settlement</p>
-          <div class="impact"><strong>Impact:</strong> Restores institutional sustainability and secures long-term operations</div>
+          <div>
+            <h3>Debt Recovery Partner</h3>
+            <p class="muted">Support institutional healing and legacy debt settlement</p>
+            <div class="impact"><strong>Impact:</strong> Restores institutional sustainability and secures long-term operations</div>
+          </div>
           <div>
             <div class="price">$22,500</div>
             <button class="full-btn add-to-cart" data-title="Debt Recovery Partner" data-price="22500" aria-label="Add Debt Recovery Partner to cart">Add to Cart</button>
@@ -100,9 +107,11 @@
 
         <!-- Infrastructure Patron -->
         <article class="card" role="article" aria-label="Infrastructure Patron">
-          <h3>Infrastructure Patron</h3>
-          <p class="muted">Sponsor team rebuilding, technology, and logistics</p>
-          <div class="impact"><strong>Impact:</strong> Strengthens production capacity, team capability, and distribution network</div>
+          <div>
+            <h3>Infrastructure Patron</h3>
+            <p class="muted">Sponsor team rebuilding, technology, and logistics</p>
+            <div class="impact"><strong>Impact:</strong> Strengthens production capacity, team capability, and distribution network</div>
+          </div>
           <div>
             <div class="price">$16,000</div>
             <button class="full-btn add-to-cart" data-title="Infrastructure Patron" data-price="16000" aria-label="Add Infrastructure Patron to cart">Add to Cart</button>
@@ -111,9 +120,11 @@
 
         <!-- Global Campaign Ally -->
         <article class="card" role="article" aria-label="Global Campaign Ally">
-          <h3>Global Campaign Ally</h3>
-          <p class="muted">Fund outreach, media production, and donor engagement</p>
-          <div class="impact"><strong>Impact:</strong> Amplifies campaign reach across 6+ currencies and global communities</div>
+          <div>
+            <h3>Global Campaign Ally</h3>
+            <p class="muted">Fund outreach, media production, and donor engagement</p>
+            <div class="impact"><strong>Impact:</strong> Amplifies campaign reach across 6+ currencies and global communities</div>
+          </div>
           <div>
             <div class="price">$11,000</div>
             <button class="full-btn add-to-cart" data-title="Global Campaign Ally" data-price="11000" aria-label="Add Global Campaign Ally to cart">Add to Cart</button>
@@ -122,10 +133,12 @@
 
         <!-- Custom Donation -->
         <article class="card" role="article" aria-label="Custom Donation">
-          <h3>Custom Donation</h3>
-          <p class="muted">Choose your own amount to support Quraner Fariwala</p>
-          <div class="impact"><strong>Impact:</strong> Your custom donation makes a difference</div>
-          <div style="margin-top:0.6rem">
+          <div>
+            <h3>Custom Donation</h3>
+            <p class="muted">Choose your own amount to support Quraner Fariwala</p>
+            <div class="impact"><strong>Impact:</strong> Your custom donation makes a difference</div>
+          </div>
+          <div>
             <input id="custom-amount" type="number" min="1" placeholder="Enter amount ($)" aria-label="Custom donation amount" />
             <div style="height:0.6rem"></div>
             <button id="custom-add" class="full-btn" disabled aria-disabled="true">Add to Cart</button>

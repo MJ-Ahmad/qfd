@@ -1,7 +1,8 @@
 /* src/js/script.js
-   Mobile-first, robust cart + checkout simulation, accessible interactions.
+   Robust, mobile-first cart + checkout simulation and header behavior.
    - localStorage key: 'qf_cart_v2'
    - demo order saved to 'qf_last_order'
+   - Mobile toggle visibility and centered nav support
 */
 
 (function () {
@@ -9,7 +10,7 @@
 
   const CART_KEY = 'qf_cart_v2';
   const LAST_ORDER_KEY = 'qf_last_order';
-  const DEBUG = false; // set true for console diagnostics
+  const DEBUG = false; // set true to enable console diagnostics
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -36,6 +37,11 @@
     return '$' + num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  }
+
+  /* Simple toast */
   function showToast(msg, ms = 2200) {
     try {
       let container = id('qf-toast');
@@ -46,19 +52,29 @@
         container.style.top = '1rem';
         container.style.right = '1rem';
         container.style.zIndex = '9999';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+        container.style.gap = '0.5rem';
         document.body.appendChild(container);
       }
       const el = document.createElement('div');
       el.textContent = msg;
-      el.style.background = 'rgba(255,255,255,0.04)';
-      el.style.color = 'var(--fg, #fff)';
+      el.style.background = 'rgba(2,6,23,0.04)';
+      el.style.color = 'var(--fg-dark, #042028)';
       el.style.padding = '0.6rem 0.9rem';
       el.style.borderRadius = '8px';
-      el.style.boxShadow = '0 8px 24px rgba(2,6,23,0.6)';
+      el.style.boxShadow = '0 8px 24px rgba(2,6,23,0.06)';
       el.style.marginTop = '0.5rem';
+      el.style.transition = 'opacity 180ms ease, transform 180ms ease';
+      el.style.opacity = '1';
       container.appendChild(el);
-      setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 220); }, ms);
-    } catch (e) { log('toast error', e); }
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 220);
+      }, ms);
+    } catch (e) {
+      log('toast error', e);
+    }
   }
 
   /* Render cart UI */
@@ -97,10 +113,6 @@
     log('renderCart', { count: cart.length, total });
   }
 
-  function escapeHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
-  }
-
   /* Bind add-to-cart buttons */
   function bindAddButtons() {
     const buttons = $$('.add-to-cart');
@@ -110,14 +122,19 @@
       btn.dataset.bound = 'true';
       btn.addEventListener('click', (ev) => {
         ev.preventDefault();
-        const title = btn.getAttribute('data-title') || (btn.closest('.card')?.querySelector('h3')?.textContent?.trim()) || 'Donation';
-        const priceRaw = btn.getAttribute('data-price') || btn.closest('.card')?.querySelector('.price')?.textContent || '0';
-        const price = Number(String(priceRaw).replace(/[^0-9.]/g, '')) || 0;
-        const cart = loadCart();
-        cart.push({ title: title.trim(), price: Number(price), addedAt: new Date().toISOString() });
-        saveCart(cart);
-        renderCart();
-        showToast(`Added to cart: ${title}`);
+        try {
+          const title = btn.getAttribute('data-title') || (btn.closest('.card')?.querySelector('h3')?.textContent?.trim()) || 'Donation';
+          const priceRaw = btn.getAttribute('data-price') || btn.closest('.card')?.querySelector('.price')?.textContent || '0';
+          const price = Number(String(priceRaw).replace(/[^0-9.]/g, '')) || 0;
+          const cart = loadCart();
+          cart.push({ title: title.trim(), price: Number(price), addedAt: new Date().toISOString() });
+          saveCart(cart);
+          renderCart();
+          showToast(`Added to cart: ${title}`);
+        } catch (err) {
+          warn('add-to-cart handler error', err);
+          showToast('Could not add item to cart');
+        }
       });
     });
   }
@@ -180,6 +197,8 @@
           saveCart(cart);
           renderCart();
           showToast('Item removed');
+        } else {
+          warn('remove-item: invalid index', idx);
         }
       });
     }
@@ -241,51 +260,70 @@
     if (checkoutForm) {
       checkoutForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const nameEl = id('payer-name');
-        const emailEl = id('payer-email');
-        const name = nameEl ? nameEl.value.trim() : '';
-        const email = emailEl ? emailEl.value.trim() : '';
-        if (!name || !email) { showToast('Please provide name and email'); return; }
+        try {
+          const nameEl = id('payer-name');
+          const emailEl = id('payer-email');
+          const name = nameEl ? nameEl.value.trim() : '';
+          const email = emailEl ? emailEl.value.trim() : '';
+          if (!name || !email) { showToast('Please provide name and email'); return; }
 
-        if (checkoutForm) checkoutForm.style.display = 'none';
-        if (checkoutStatus) { checkoutStatus.style.display = ''; checkoutStatus.innerHTML = '<div class="small">Processing payment…</div>'; }
-
-        setTimeout(() => {
-          const cart = loadCart();
-          const total = cart.reduce((s, i) => s + Number(i.price || 0), 0);
-          const order = {
-            id: 'QF-' + Math.random().toString(36).slice(2, 9).toUpperCase(),
-            items: cart,
-            donor: { name, email },
-            total: Number(total),
-            status: 'paid',
-            createdAt: new Date().toISOString()
-          };
-          try { localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(order)); } catch (err) { warn('save order failed', err); }
-
-          saveCart([]);
-          renderCart();
-
-          if (checkoutStatus) checkoutStatus.innerHTML = '<div class="success" style="background:linear-gradient(90deg,#10b981,#06b6d4);color:#042;padding:0.6rem;border-radius:8px;font-weight:800">Payment successful — thank you.</div>';
-          showToast('Payment completed. Receipt saved locally.');
+          if (checkoutForm) checkoutForm.style.display = 'none';
+          if (checkoutStatus) { checkoutStatus.style.display = ''; checkoutStatus.innerHTML = '<div class="small">Processing payment…</div>'; }
 
           setTimeout(() => {
-            if (modalBackdrop) { modalBackdrop.classList.remove('open'); modalBackdrop.setAttribute('aria-hidden', 'true'); }
-            if (checkoutStatus) checkoutStatus.style.display = 'none';
-            if (checkoutForm) checkoutForm.style.display = '';
-            location.href = './thankyou.html';
+            const cart = loadCart();
+            const total = cart.reduce((s, i) => s + Number(i.price || 0), 0);
+            const order = {
+              id: 'QF-' + Math.random().toString(36).slice(2, 9).toUpperCase(),
+              items: cart,
+              donor: { name, email },
+              total: Number(total),
+              status: 'paid',
+              createdAt: new Date().toISOString()
+            };
+            try { localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(order)); } catch (err) { warn('save order failed', err); }
+
+            saveCart([]);
+            renderCart();
+
+            if (checkoutStatus) checkoutStatus.innerHTML = '<div class="success" style="background:linear-gradient(90deg,#10b981,#06b6d4);color:#042;padding:0.6rem;border-radius:8px;font-weight:800">Payment successful — thank you.</div>';
+            showToast('Payment completed. Receipt saved locally.');
+
+            setTimeout(() => {
+              if (modalBackdrop) { modalBackdrop.classList.remove('open'); modalBackdrop.setAttribute('aria-hidden', 'true'); }
+              if (checkoutStatus) checkoutStatus.style.display = 'none';
+              if (checkoutForm) checkoutForm.style.display = '';
+              // Redirect to thank you page if present
+              if (location.pathname.endsWith('/donate.html') || location.pathname.endsWith('/')) {
+                location.href = './thankyou.html';
+              }
+            }, 1200);
           }, 1200);
-        }, 1200);
+        } catch (err) {
+          warn('checkout submit error', err);
+          showToast('Payment failed (demo). Try again.');
+          if (checkoutForm) checkoutForm.style.display = '';
+          if (checkoutStatus) checkoutStatus.style.display = 'none';
+        }
       });
     }
   }
 
-  /* Mobile menu toggle */
+  /* Mobile menu toggle and visibility */
   function bindMobileMenu() {
     const toggle = id('mobile-toggle');
     const mobileMenu = id('mobile-menu');
     const primaryNav = id('primary-nav');
+
     if (!toggle) return;
+
+    function updateToggleVisibility() {
+      if (window.innerWidth <= 768) toggle.style.display = 'inline-flex';
+      else toggle.style.display = 'none';
+    }
+    updateToggleVisibility();
+    window.addEventListener('resize', updateToggleVisibility);
+
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -298,6 +336,8 @@
         primaryNav.style.gap = '0.5rem';
       }
     });
+
+    // Close mobile menu when clicking outside
     document.addEventListener('click', (ev) => {
       if (!mobileMenu) return;
       if (!mobileMenu.contains(ev.target) && !toggle.contains(ev.target)) {
@@ -320,7 +360,7 @@
         <div><strong>Date:</strong> ${new Date(order.createdAt).toLocaleString()}</div>
       </div>
       <div style="margin-top:12px">${itemsHtml}</div>
-      <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(255,255,255,0.04)"><strong>Total</strong><strong>${formatCurrency(order.total)}</strong></div>
+      <div style="display:flex;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(2,6,23,0.04)"><strong>Total</strong><strong>${formatCurrency(order.total)}</strong></div>
       <div style="margin-top:12px" class="small">Receipt saved for: ${escapeHtml(order.donor?.email || '')}</div>
     `;
   }
@@ -344,6 +384,23 @@
     });
   }
 
+  /* Diagnostic helper (for DEBUG) */
+  function diagnosticLog() {
+    if (!DEBUG) return;
+    log('Diagnostic: DOM elements presence', {
+      addToCartButtons: $$('.add-to-cart').length,
+      headerCart: !!id('header-cart'),
+      headerCartCount: !!id('header-cart-count'),
+      cartModal: !!id('cart-modal'),
+      cartItems: !!id('cart-items'),
+      cartTotal: !!id('cart-total'),
+      checkout: !!id('checkout'),
+      customAmount: !!id('custom-amount'),
+      customAdd: !!id('custom-add'),
+      mobileToggle: !!id('mobile-toggle')
+    });
+  }
+
   /* Init */
   function init() {
     try {
@@ -355,8 +412,11 @@
       renderCart();
       renderInvoicePage();
       bindTracing();
+      diagnosticLog();
       log('init complete');
-    } catch (e) { warn('init error', e); }
+    } catch (e) {
+      warn('init error', e);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

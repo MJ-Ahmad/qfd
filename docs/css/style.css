@@ -1,118 +1,149 @@
-/* src/css/style.css
-   Professional, modern, mobile-first responsive styles
-   Clean dark theme with accent, accessible focus states, and touch-friendly controls.
-*/
-
-:root{
-  --bg: #041025;
-  --panel: #071428;
-  --muted: #9aa7b8;
+/* Layout: off-white page, white header/footer blocks */
+:root {
+  --page-bg: #faf9f7;      /* off-white page background */
+  --panel-bg: #ffffff;     /* header/footer/card background */
+  --muted: #6b7280;
   --primary: #0ea5a4;
   --accent: #06b6d4;
-  --fg: #e6eef6;
-  --glass: rgba(255,255,255,0.03);
-  --border: rgba(255,255,255,0.06);
-  --success: #10b981;
-  --danger: #ef4444;
-  --radius: 12px;
-  --shadow: 0 12px 40px rgba(2,6,23,0.6);
-  --container-max: 1100px;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --fg-dark: #042028;
+  --card-border: rgba(2,6,23,0.06);
 }
 
-/* Reset & base */
-* { box-sizing: border-box; }
-html,body { height:100%; margin:0; background: linear-gradient(180deg,#041025 0%, #071428 100%); color:var(--fg); }
-a { color: inherit; text-decoration: none; }
-.container { max-width: var(--container-max); margin: 0 auto; padding: 1rem; }
-
-/* Header */
-header { position: sticky; top:0; z-index:60; background: linear-gradient(180deg, rgba(7,10,20,0.6), rgba(7,10,20,0.35)); border-bottom:1px solid var(--border); backdrop-filter: blur(8px); }
-.nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.9rem 1rem; max-width:var(--container-max); margin:0 auto; }
-.brand { display:flex; align-items:center; gap:0.75rem; color:var(--fg); }
-.logo { width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; background:linear-gradient(135deg,var(--primary),var(--accent)); color:#042; box-shadow:var(--shadow); }
-.brand-title { font-weight:800; font-size:1rem; line-height:1; }
-.brand-sub { font-size:0.85rem; color:var(--muted); }
-
-/* Nav links */
-.nav-links { display:flex; gap:0.5rem; align-items:center; }
-.nav-link { padding:0.45rem 0.8rem; border-radius:10px; font-weight:700; color:var(--fg); }
-.nav-link:hover { background: rgba(255,255,255,0.02); color:var(--primary); }
-
-/* Header cart */
-.header-cart { display:flex; align-items:center; gap:0.5rem; background: linear-gradient(90deg,var(--primary),var(--accent)); padding:0.45rem 0.7rem; border-radius:999px; color:#042; font-weight:800; cursor:pointer; }
-.cart-count { background:var(--success); color:#042; padding:0.12rem 0.45rem; border-radius:999px; font-weight:800; font-size:0.85rem; }
-
-/* Hero */
-.hero { display:flex; align-items:center; justify-content:center; min-height:36vh; padding:2.2rem 1rem; border-bottom:1px solid var(--border); text-align:center; }
-.kicker { display:inline-block; padding:0.35rem 0.8rem; border-radius:999px; background: rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.08); color:var(--accent); font-weight:700; margin-bottom:0.6rem; }
-h1 { font-size:1.9rem; margin:0 0 0.5rem 0; line-height:1.02; }
-.lead { color:var(--muted); max-width:760px; margin:0 auto; font-size:0.98rem; }
-
-/* Grid & cards */
-.grid { display:grid; gap:1rem; }
-.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--border); padding:1.1rem; border-radius:var(--radius); box-shadow: 0 6px 18px rgba(2,6,23,0.45); }
-.card h3 { margin:0 0 0.5rem 0; font-size:1.05rem; }
-.muted { color:var(--muted); font-size:0.95rem; }
-.impact { background: rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.08); padding:0.6rem; border-radius:8px; margin-bottom:0.75rem; color:var(--fg); }
-.price { font-size:1.6rem; font-weight:800; color:var(--primary); margin:0 0 0.6rem 0; }
-
-/* Buttons & inputs */
-.full-btn { width:100%; display:inline-flex; align-items:center; justify-content:center; gap:0.6rem; padding:0.6rem; border-radius:10px; background:var(--primary); color:#042; border:none; cursor:pointer; font-weight:800; font-size:0.98rem; }
-.btn-ghost { background:transparent; border:1px solid var(--border); color:var(--fg); padding:0.5rem 0.7rem; border-radius:8px; cursor:pointer; }
-input[type="number"], input[type="text"], input[type="email"] { width:100%; padding:0.6rem; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); font-size:0.98rem; }
-
-/* Cart modal */
-.cart-modal { position:fixed; right:1rem; bottom:4.6rem; width:360px; max-height:70vh; background: linear-gradient(180deg,#071428,#041025); border:1px solid var(--border); border-radius:12px; padding:0.8rem; box-shadow:0 20px 60px rgba(2,6,23,0.6); overflow:auto; z-index:140; display:none; }
-.cart-modal.open { display:block; }
-.cart-item { display:flex; justify-content:space-between; align-items:center; padding:0.6rem; border-bottom:1px dashed rgba(255,255,255,0.03); }
-.cart-footer { display:flex; justify-content:space-between; align-items:center; padding-top:0.6rem; gap:0.5rem; }
-
-/* Modal / checkout */
-.modal-backdrop { position:fixed; inset:0; background:rgba(2,6,23,0.6); display:none; align-items:center; justify-content:center; z-index:160; }
-.modal-backdrop.open { display:flex; }
-.modal { width:100%; max-width:720px; background: linear-gradient(180deg,#071428,#041025); border-radius:12px; padding:1.2rem; border:1px solid var(--border); box-shadow:var(--shadow); }
-
-/* Footer */
-footer { border-top:1px solid var(--border); padding:1.6rem 1rem; margin-top:2rem; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); }
-.footer-inner { max-width:var(--container-max); margin:0 auto; display:flex; justify-content:space-between; gap:1rem; align-items:center; }
-
-/* Toast */
-#qf-toast { position:fixed; top:1rem; right:1rem; z-index:200; display:flex; flex-direction:column; gap:0.5rem; }
-
-/* Accessibility focus */
-button:focus, a:focus, input:focus { outline: 3px solid rgba(14,165,164,0.14); outline-offset: 2px; }
-
-/* Responsive: tablet */
-@media (max-width: 1024px) {
-  .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { display:none; }
+/* Page background */
+html, body {
+  background: var(--page-bg);
+  color: var(--fg-dark);
 }
 
-/* Responsive: mobile */
-@media (max-width: 640px) {
-  :root { --radius:10px; }
-  .container { padding: 0.9rem; }
-  h1 { font-size:1.5rem; }
-  .hero { min-height: 30vh; padding:1.6rem 0.9rem; }
-  .grid.cols-3 { grid-template-columns: 1fr; gap:0.6rem; }
-  .card { padding:0.9rem; border-radius:10px; }
-  .price { font-size:1.25rem; }
-  .kicker { padding:0.25rem 0.6rem; font-size:0.82rem; }
-  .lead { font-size:0.95rem; }
+/* Header block */
+header {
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+/* Header inner layout */
+.nav {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+}
+
+/* Logo left */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--fg-dark);
+}
+.logo {
+  width:48px;
+  height:48px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  background: linear-gradient(135deg,var(--primary),var(--accent));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+
+/* Two-color site title: Quraner / Fariwala */
+.brand-title {
+  font-weight:800;
+  font-size:1rem;
+  line-height:1;
+  display:flex;
+  gap:0.25rem;
+  align-items:center;
+}
+.brand-title .q { color: var(--primary); }
+.brand-title .f { color: var(--accent); }
+
+/* Center nav */
+.primary-nav-wrap {
+  flex: 1 1 auto;
+  display:flex;
+  justify-content:center;
+}
+.nav-links {
+  display:flex;
+  gap:0.6rem;
+  align-items:center;
+}
+.nav-link {
+  padding:0.45rem 0.8rem;
+  border-radius:8px;
+  color:var(--fg-dark);
+  font-weight:700;
+}
+.nav-link:hover { background: rgba(2,6,23,0.02); }
+
+/* Cart on right */
+.header-cart {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  background: transparent;
+  color:var(--fg-dark);
+  padding:0.35rem 0.6rem;
+  border-radius:8px;
+  cursor:pointer;
+}
+.cart-count {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.12rem 0.45rem;
+  border-radius:999px;
+  font-weight:800;
+  font-size:0.85rem;
+}
+
+/* Footer block */
+footer {
+  background: var(--panel-bg);
+  border-top: 1px solid var(--card-border);
+  box-shadow: 0 -6px 18px rgba(2,6,23,0.03);
+  margin-top: 2rem;
+}
+
+/* Mobile header layout: left icon, center title, right cart */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.6rem;
+  }
+  /* left: hamburger (mobile-toggle) and logo hidden on small screens */
+  .brand { gap:0.5rem; }
   .logo { width:40px; height:40px; }
-  .brand-sub { display:none; }
-  .header-cart { padding:0.45rem 0.6rem; font-size:0.9rem; }
-  .cart-modal { left:0.6rem; right:0.6rem; width:auto; bottom:5.2rem; }
-  .full-btn { font-size:1rem; padding:0.7rem; }
-  .nav { padding:0.6rem; }
-  .modal { margin:1rem; max-width: calc(100% - 2rem); }
+  /* center nav collapsed; primary nav hidden by default */
+  .nav-links { display:none; }
+  .primary-nav-wrap { justify-content:center; }
+  /* header content order: left toggle, center title, right cart */
+  .nav { align-items:center; }
+  /* ensure brand-title centered visually */
+  .brand-title { font-size:1rem; text-align:center; }
+  /* mobile toggle visible */
+  #mobile-toggle { display:inline-flex; background:transparent; border:0; color:var(--fg-dark); }
+  /* mobile menu card styling */
+  #mobile-menu.card { background: var(--panel-bg); border:1px solid var(--card-border); box-shadow: 0 12px 40px rgba(2,6,23,0.06); }
 }
 
-/* Utility */
-.small { font-size:0.9rem; color:var(--muted); }
-.muted { color:var(--muted); }
-.hidden { display:none !important; }
+/* Ensure donate cards still look good on white background */
+.card { background: #fff; border:1px solid var(--card-border); color:var(--fg-dark); box-shadow: 0 8px 30px rgba(2,6,23,0.04); }
+.kicker { color: var(--primary); background: rgba(14,165,164,0.06); border-radius:999px; padding:0.25rem 0.6rem; }
+
+/* Buttons on white background */
+.full-btn { background: linear-gradient(90deg,var(--primary),var(--accent)); color:#fff; border:none; }
+.btn-ghost { background:transparent; border:1px solid var(--card-border); color:var(--fg-dark); }
+
+/* small adjustments to ensure contrast on white header */
+.nav-link, .brand-title, .header-cart { color: var(--fg-dark); }

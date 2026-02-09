@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — QuranerFariwala</title>
+  <meta name="description" content="Checkout — QuranerFariwala (demo)" />
+  <style>
+    :root{
+      --page-bg:#faf9f7; --panel-bg:#fff; --muted:#6b7280;
+      --primary:#0ea5a4; --accent:#06b6d4; --fg:#042028;
+      --card-border:rgba(2,6,23,0.06); --radius:12px; --max:1100px;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--page-bg);color:var(--fg)}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:1rem}
+
+    header{background:var(--panel-bg);border-bottom:1px solid var(--card-border);position:sticky;top:0;z-index:120}
+    .nav{display:grid;grid-template-columns:220px 1fr 220px;align-items:center;gap:.5rem;max-width:var(--max);margin:0 auto;padding:.8rem 1rem}
+    .nav-left{display:flex;align-items:center;gap:.6rem}
+    .mobile-toggle{display:none}
+    .brand{font-weight:800;font-size:1.05rem;color:var(--fg);justify-self:start}
+    .nav-center{display:flex;justify-content:center}
+    .nav-links{display:flex;gap:.6rem}
+    .nav-right{display:flex;justify-content:flex-end;gap:.6rem}
+    .header-cart{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:8px;cursor:pointer;font-weight:800}
+    .cart-count{background:var(--primary);color:#fff;padding:.12rem .45rem;border-radius:999px;font-weight:800;font-size:.82rem}
+
+    main{padding:1.2rem}
+    .card{background:var(--panel-bg);border:1px solid var(--card-border);border-radius:12px;padding:1rem;box-shadow:0 8px 30px rgba(2,6,23,0.04)}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:1rem;max-width:980px;margin:0 auto}
+    .form-row{margin-bottom:.8rem}
+    label{display:block;font-weight:700;margin-bottom:.25rem}
+    input,select{width:100%;padding:.6rem;border-radius:8px;border:1px solid var(--card-border);background:transparent}
+
+    .summary{border-left:1px dashed rgba(2,6,23,0.04);padding-left:1rem}
+    .total{font-weight:900;font-size:1.1rem;margin-top:1rem}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:.6rem .9rem;border-radius:10px;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-weight:800}
+
+    footer{background:var(--panel-bg);border-top:1px solid var(--card-border);padding:1rem;margin-top:1.6rem}
+    .footer-inner{text-align:center;color:var(--muted)}
+
+    @media(max-width:768px){
+      .mobile-toggle{display:inline-flex}
+      .nav{grid-template-columns:48px 1fr 48px;padding:.6rem}
+      .brand{display:none}
+      .nav-links{display:none}
+      .grid{grid-template-columns:1fr;gap:1rem}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-left">
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+        <a class="brand" href="./index.html"><span class="q">Quraner</span><span class="f">Fariwala</span></a>
+      </div>
+
+      <div class="nav-center">
+        <nav class="nav-links" aria-label="Primary">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./donate.html">Donate</a>
+          <a class="nav-link" href="./tracing.html">Contact</a>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <a class="header-cart" href="./cart.html" aria-label="Open cart">
+          <svg class="cart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78"/></svg>
+          <div>Cart</div>
+          <div id="header-cart-count" class="cart-count">0</div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <nav id="mobile-menu" aria-hidden="true" style="display:none">
+    <div style="padding:.6rem;display:flex;flex-direction:column;gap:.4rem">
+      <a href="./index.html">Home</a>
+      <a href="./donate.html">Donate</a>
+      <a href="./tracing.html">Contact</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="card">
+      <h1>Checkout</h1>
+      <div class="grid">
+        <div>
+          <form id="checkout-form" novalidate>
+            <div class="form-row">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div class="form-row">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div class="form-row">
+              <label for="method">Payment method</label>
+              <select id="method" name="method">
+                <option value="card">Card</option>
+                <option value="bank">Bank transfer</option>
+                <option value="mobile">Mobile wallet</option>
+              </select>
+            </div>
+
+            <div id="payment-details" class="form-row">
+              <label for="card">Card number</label>
+              <input id="card" name="card" type="text" placeholder="4242 4242 4242 4242" />
+            </div>
+
+            <div style="display:flex;gap:.6rem;justify-content:flex-end">
+              <a href="./cart.html" class="btn btn-ghost">Back to cart</a>
+              <button type="submit" class="btn btn-primary">Pay now</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="summary">
+          <h3>Order summary</h3>
+          <div id="summary-items" style="margin-top:.6rem"></div>
+          <div class="total" id="summary-total">$0.00</div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2026 Quraner Fariwala — All rights reserved</div>
+      <div style="margin-top:6px"><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./support.html">Support</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      // mobile menu
+      const toggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      function setToggle(){ if(!toggle) return; toggle.style.display = window.innerWidth<=768 ? 'inline-flex' : 'none'; }
+      setToggle(); window.addEventListener('resize', setToggle);
+      if(toggle && mobileMenu){
+        toggle.addEventListener('click', ()=> {
+          const open = mobileMenu.style.display === 'block';
+          mobileMenu.style.display = open ? 'none' : 'block';
+          toggle.setAttribute('aria-expanded', String(!open));
+        });
+      }
+
+      // cart summary and checkout simulation
+      const KEY='qf_cart_v2';
+      const summaryItems = document.getElementById('summary-items');
+      const summaryTotal = document.getElementById('summary-total');
+      const headerCount = document.getElementById('header-cart-count');
+
+      function loadCart(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch{return []} }
+      function format(n){ return '$' + Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+      function renderSummary(){
+        const cart = loadCart();
+        headerCount.textContent = String(cart.length);
+        summaryItems.innerHTML = '';
+        if(!cart.length){ summaryItems.innerHTML = '<div class="muted">No items in cart.</div>'; summaryTotal.textContent = format(0); return; }
+        cart.forEach(it=>{
+          const el = document.createElement('div');
+          el.style.display='flex'; el.style.justifyContent='space-between'; el.style.padding='6px 0';
+          el.innerHTML = `<div>${escapeHtml(it.title)}</div><div>${format(it.price)}</div>`;
+          summaryItems.appendChild(el);
+        });
+        const total = cart.reduce((s,i)=>s+Number(i.price||0),0);
+        summaryTotal.textContent = format(total);
+      }
+
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+      renderSummary();
+
+      // handle payment (demo)
+      const form = document.getElementById('checkout-form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        if(!name || !email){ alert('Please enter name and email'); return; }
+        // simulate success: clear cart and redirect to thank you (if exists)
+        localStorage.removeItem(KEY);
+        alert('Payment simulated. Thank you, ' + name + '.');
+        try{ window.location.href = './thankyou.html'; }catch{ renderSummary(); }
+      });
+    })();
+  </script>
+</body>
+</html>

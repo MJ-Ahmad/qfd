@@ -1,0 +1,10 @@
+{
+  "name": "qfd",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare:docs": "rm -rf docs && mkdir -p docs/css docs/js && cp -r src/pages/* docs/ && cp -r src/css/* docs/css/ && cp -r src/js/* docs/js/ && cp -r public docs/",
+    "serve:docs": "npx http-server docs -p 8080",
+    "start": "npm run prepare:docs && npm run serve:docs"
+  }
+}

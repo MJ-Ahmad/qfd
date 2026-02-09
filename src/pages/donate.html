@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Donate — Quraner Fariwala</title>
+  <meta name="description" content="Support Quraner Fariwala — print and distribute memorization-optimized Qurans." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="./index.html" aria-label="Home">
+        <div class="logo" aria-hidden="true">ق</div>
+        <div>
+          <div class="brand-title">Quraner Fariwala</div>
+          <div class="brand-sub">Research • Printing • Distribution</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./donate.html">Donate</a>
+        <a class="nav-link" href="./tracing.html">Contact</a>
+      </nav>
+
+      <div id="header-cart" class="header-cart" role="button" aria-label="Open cart" tabindex="0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#042" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="8" cy="21" r="1" fill="#042"></circle>
+          <circle cx="19" cy="21" r="1" fill="#042"></circle>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" stroke="#042"></path>
+        </svg>
+        <div style="font-weight:800;color:#042">Cart</div>
+        <div id="header-cart-count" class="cart-count" aria-hidden="true">0</div>
+      </div>
+
+      <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--fg)">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="card" style="display:none;max-width:1100px;margin:0.6rem auto;padding:0.6rem;border-radius:10px;">
+    <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.25rem">
+      <li><a href="./index.html" style="display:block;padding:0.6rem;border-radius:8px;color:var(--fg);text-decoration:none">Home</a></li>
+      <li><a href="./donate.html" style="display:block;padding:0.6rem;border-radius:8px;color:var(--fg);text-decoration:none">Donate</a></li>
+      <li><a href="./tracing.html" style="display:block;padding:0.6rem;border-radius:8px;color:var(--fg);text-decoration:none">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" role="banner" aria-label="Ramadhan campaign hero">
+    <div class="hero-card">
+      <div class="kicker">Ramadhan-2026 Campaign</div>
+      <h1>Transform Lives Through <span style="background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">Giving</span></h1>
+      <p class="lead">Join our mission to print and distribute 40,000 memorization-optimized Qurans. Your donation empowers orphans and underserved Hifz students across Bangladesh and South Asia.</p>
+      <div style="margin-top:1rem">
+        <a class="full-btn" href="#donate">Donate Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation section -->
+  <main class="container" id="donate" role="main">
+    <section aria-labelledby="donate-heading">
+      <h2 id="donate-heading" style="text-align:center;margin-bottom:1rem">Ways to Support Us</h2>
+
+      <div class="grid cols-3" style="grid-template-columns:repeat(3,1fr);">
+        <!-- Single Copy Sponsor -->
+        <article class="card" role="article" aria-label="Single Copy Sponsor">
+          <h3>Single Copy Sponsor</h3>
+          <p class="muted">Sponsor one memorization-optimized Quran for a deserving student</p>
+          <div class="impact"><strong>Impact:</strong> Provides 1 beautifully printed Quran to an orphan or underserved learner</div>
+          <div>
+            <div class="price">$3.25</div>
+            <button class="full-btn add-to-cart" data-title="Single Copy Sponsor" data-price="3.25" aria-label="Add Single Copy Sponsor to cart">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Batch Sponsor -->
+        <article class="card" role="article" aria-label="Batch Sponsor">
+          <h3>Batch Sponsor (1,000 Copies)</h3>
+          <p class="muted">Sponsor 1,000 Qurans for institutional distribution</p>
+          <div class="impact"><strong>Impact:</strong> Distributes 1,000 memorization-optimized Qurans across schools and Hifz centres</div>
+          <div>
+            <div class="price">$2200</div>
+            <button class="full-btn add-to-cart" data-title="Batch Sponsor (1,000 Copies)" data-price="2200" aria-label="Add Batch Sponsor to cart">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Debt Recovery Partner -->
+        <article class="card" role="article" aria-label="Debt Recovery Partner">
+          <h3>Debt Recovery Partner</h3>
+          <p class="muted">Support institutional healing and legacy debt settlement</p>
+          <div class="impact"><strong>Impact:</strong> Restores institutional sustainability and secures long-term operations</div>
+          <div>
+            <div class="price">$22,500</div>
+            <button class="full-btn add-to-cart" data-title="Debt Recovery Partner" data-price="22500" aria-label="Add Debt Recovery Partner to cart">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Infrastructure Patron -->
+        <article class="card" role="article" aria-label="Infrastructure Patron">
+          <h3>Infrastructure Patron</h3>
+          <p class="muted">Sponsor team rebuilding, technology, and logistics</p>
+          <div class="impact"><strong>Impact:</strong> Strengthens production capacity, team capability, and distribution network</div>
+          <div>
+            <div class="price">$16,000</div>
+            <button class="full-btn add-to-cart" data-title="Infrastructure Patron" data-price="16000" aria-label="Add Infrastructure Patron to cart">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Global Campaign Ally -->
+        <article class="card" role="article" aria-label="Global Campaign Ally">
+          <h3>Global Campaign Ally</h3>
+          <p class="muted">Fund outreach, media production, and donor engagement</p>
+          <div class="impact"><strong>Impact:</strong> Amplifies campaign reach across 6+ currencies and global communities</div>
+          <div>
+            <div class="price">$11,000</div>
+            <button class="full-btn add-to-cart" data-title="Global Campaign Ally" data-price="11000" aria-label="Add Global Campaign Ally to cart">Add to Cart</button>
+          </div>
+        </article>
+
+        <!-- Custom Donation -->
+        <article class="card" role="article" aria-label="Custom Donation">
+          <h3>Custom Donation</h3>
+          <p class="muted">Choose your own amount to support Quraner Fariwala</p>
+          <div class="impact"><strong>Impact:</strong> Your custom donation makes a difference</div>
+          <div style="margin-top:0.6rem">
+            <input id="custom-amount" type="number" min="1" placeholder="Enter amount ($)" aria-label="Custom donation amount" />
+            <div style="height:0.6rem"></div>
+            <button id="custom-add" class="full-btn" disabled aria-disabled="true">Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart modal -->
+  <div id="cart-modal" class="cart-modal" role="dialog" aria-label="Shopping cart" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem">
+      <strong>Your Cart</strong>
+      <div><button id="cart-clear" class="btn-ghost" title="Clear cart">Clear</button></div>
+    </div>
+    <div id="cart-items" style="min-height:80px"></div>
+    <div class="cart-footer">
+      <div>
+        <div class="small">Total</div>
+        <div id="cart-total" style="font-weight:800;font-size:1.05rem">$0.00</div>
+      </div>
+      <div style="flex:1;text-align:right">
+        <button id="checkout" class="full-btn" style="background:linear-gradient(90deg,var(--accent),var(--primary));">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout modal (simulated) -->
+  <div id="modal-backdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-label="Checkout">
+      <h3 style="margin-top:0">Checkout</h3>
+      <form id="checkout-form" novalidate>
+        <div class="form-row single" style="margin-bottom:0.6rem">
+          <label class="small" for="payer-name">Full name</label>
+          <input id="payer-name" name="name" type="text" placeholder="Your full name" required />
+        </div>
+
+        <div class="form-row single" style="margin-bottom:0.6rem">
+          <label class="small" for="payer-email">Email</label>
+          <input id="payer-email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-row single" style="margin-bottom:0.6rem">
+          <label class="small">Payment method</label>
+          <div class="pay-methods" role="tablist" aria-label="Payment methods">
+            <div class="pay-method active" data-method="card" role="tab" tabindex="0">Card</div>
+            <div class="pay-method" data-method="bank" role="tab" tabindex="0">Bank Transfer</div>
+            <div class="pay-method" data-method="mobile" role="tab" tabindex="0">Mobile Wallet</div>
+          </div>
+        </div>
+
+        <div id="payment-details" style="margin-bottom:0.6rem">
+          <div id="card-fields" class="form-row single">
+            <label class="small" for="card-number">Card number</label>
+            <input id="card-number" name="card" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242" />
+          </div>
+        </div>
+
+        <div style="display:flex;gap:0.6rem;align-items:center;justify-content:flex-end;margin-top:0.6rem">
+          <button type="button" id="cancel-checkout" class="btn-ghost">Cancel</button>
+          <button type="submit" id="pay-now" class="full-btn" style="background:linear-gradient(90deg,var(--primary),var(--accent));">Pay Now</button>
+        </div>
+      </form>
+
+      <div id="checkout-status" style="margin-top:0.8rem;display:none"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div style="font-weight:800">Quraner Fariwala Ltd</div>
+        <div class="small">© 2026 Quraner Fariwala — All rights reserved</div>
+      </div>
+      <div class="small" id="contact">
+        <div>Contact: <a href="mailto:quranerfariwala@gmail.com">quranerfariwala@gmail.com</a></div>
+        <div>Phone: +880-1788856628</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast container -->
+  <div id="qf-toast" aria-hidden="true"></div>
+
+  <!-- Script -->
+  <script src="./js/script.js"></script>
+</body>
+</html>

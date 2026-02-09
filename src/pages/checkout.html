@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Checkout</title><link rel="stylesheet" href="./css/style.css"/></head><body>
+<header>
+  <div class="nav">
+    <a class="brand" href="./index.html"><div class="logo">ق</div><div><div class="brand-title">Quraner Fariwala</div></div></a>
+    <nav class="nav-links"><a class="nav-link" href="./index.html">Home</a><a class="nav-link" href="./donate.html">Donate</a></nav>
+    <div id="header-cart" class="header-cart"><div style="font-weight:800;color:#042">Cart</div><div id="header-cart-count" class="cart-count">0</div></div>
+  </div>
+</header>
+
+<main class="container">
+  <h2>Checkout</h2>
+  <form id="checkout-form" novalidate>
+    <label class="small">Full name</label><input id="payer-name" name="name" type="text" required/>
+    <label class="small">Email</label><input id="payer-email" name="email" type="email" required/>
+    <div class="pay-methods" style="margin-top:0.6rem">
+      <div class="pay-method active" data-method="card">Card</div>
+      <div class="pay-method" data-method="bank">Bank Transfer</div>
+      <div class="pay-method" data-method="mobile">Mobile Wallet</div>
+    </div>
+    <div id="payment-details" style="margin-top:0.6rem"></div>
+    <div style="margin-top:1rem"><button type="submit" class="full-btn">Pay Now</button></div>
+  </form>
+  <div id="checkout-status" style="display:none;margin-top:0.6rem"></div>
+</main>
+
+<div id="qf-toast" aria-hidden="true"></div>
+<script src="./js/script.js"></script>
+</body></html>

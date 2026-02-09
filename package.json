@@ -2,9 +2,23 @@
   "name": "qfd",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "prepare:docs": "rm -rf docs && mkdir -p docs/css docs/js && cp -r src/pages/* docs/ && cp -r src/css/* docs/css/ && cp -r src/js/* docs/js/ && cp -r public docs/",
-    "serve:docs": "npx http-server docs -p 8080",
-    "start": "npm run prepare:docs && npm run serve:docs"
-  }
+  "description": "Static donation site for Quraner Fariwala prepared for GitHub Pages",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mj-ahmad/qfd"
+  },
+"scripts": {
+  "prepare:docs": "node scripts/prepare-docs.js",
+  "serve:docs": "npx http-server docs -p 8080",
+  "start": "npm run prepare:docs && npm run serve:docs",
+  "clean:docs": "node -e \"require('fs').rmSync('docs',{recursive:true,force:true})\""
+  },
+  "keywords": [
+    "donation",
+    "static",
+    "github-pages",
+    "quraner-fariwala"
+  ],
+  "author": "MJ-AHMAD",
+  "license": "MIT"
 }
